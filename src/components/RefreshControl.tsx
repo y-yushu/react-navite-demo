@@ -18,7 +18,6 @@ const App = () => {
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-
     wait(2000).then(() => setRefreshing(false));
   }, []);
 
@@ -27,7 +26,12 @@ const App = () => {
       <ScrollView
         contentContainerStyle={styles.scrollView}
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            progressBackgroundColor="green"
+            progressViewOffset={40}
+          />
         }>
         <Text>Pull down to see RefreshControl indicator</Text>
       </ScrollView>
@@ -38,7 +42,7 @@ const App = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    // marginTop: 0,
   },
   scrollView: {
     flex: 1,
