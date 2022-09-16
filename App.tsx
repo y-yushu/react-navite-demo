@@ -14,7 +14,8 @@ import * as React from 'react';
 // import Index from './src/components/SectionList'; // 分组列表
 // import Index from './src/components/StatusBar'; // 状态栏
 // import Index from './src/components/Switch'; // 开关
-import Index from './src/components/Text'; // 文本
+// import Index from './src/components/Text'; // 文本
+import Index from './src/components/TextInput'; // 输入框
 
 function App() {
   return <Index />;
