@@ -22,6 +22,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import Index from './components/TouchableWithoutFeedback'; // 触摸无效果
 // import Index from './src/components/Animated'; // 动画
 
+import Login from './src/screens/Login';
 import Test1 from './src/screens/test1';
 import Test2 from './src/screens/test2';
 
@@ -31,6 +32,13 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="Login"
+          component={Login}
+          options={{
+            header: () => null,
+          }}
+        />
         <Stack.Screen name="Test1" component={Test1} />
         <Stack.Screen name="Test2" component={Test2} />
       </Stack.Navigator>
