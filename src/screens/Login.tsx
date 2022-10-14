@@ -9,14 +9,14 @@ import {
   useWindowDimensions,
 } from 'react-native';
 // import {Checkbox} from '@ant-design/react-native';
-// import CheckBox from 'react-native-check-box';
+import CheckBox from 'react-native-check-box';
 import Logo from '../assets/icon/logo.svg';
 // 背景图片
 const image = require('../assets/image/w_bg.png');
 
 const HomeScreen = (props: any) => {
   const {width} = useWindowDimensions();
-  // const [isChecked, setIsChecked] = React.useState(false);
+  const [isChecked, setIsChecked] = React.useState(false);
 
   const toPage = () => {
     props.navigation.navigate('Test1');
@@ -33,7 +33,15 @@ const HomeScreen = (props: any) => {
       </View>
       <View style={style.bottom}>
         <View>
-          {/* <Checkbox onChange={() => change()}>Checkbox</Checkbox> */}
+          {/* <Checkbox>Checkbox</Checkbox> */}
+          <CheckBox
+            style={{flex: 1, padding: 10}}
+            onClick={() => {
+              setIsChecked(false);
+            }}
+            isChecked={isChecked}
+            leftText={'CheckBox'}
+          />
           <Text>已阅读并同意 </Text>
           <Text>《智笔课堂服务协议和隐私政策》 </Text>
         </View>
@@ -56,13 +64,13 @@ const style = StyleSheet.create({
   },
   center: {
     flex: 6,
-    backgroundColor: 'green',
+    // backgroundColor: 'green',
   },
   bottom: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'pink',
+    // backgroundColor: 'pink',
   },
 });
 
