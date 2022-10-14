@@ -22,7 +22,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import Index from './components/TouchableWithoutFeedback'; // 触摸无效果
 // import Index from './src/components/Animated'; // 动画
 
-import Login from './src/screens/Login';
+import Login from './src/screens/Login/index';
 import Test1 from './src/screens/test1';
 import Test2 from './src/screens/test2';
 
