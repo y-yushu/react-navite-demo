@@ -1,0 +1,23 @@
+{
+  "id": "3711339",
+  "name": "re_demo",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "8361844",
+      "name": "眼睛3",
+      "font_class": "yanjing",
+      "unicode": "e6cf",
+      "unicode_decimal": 59087
+    },
+    {
+      "icon_id": "8361853",
+      "name": "眼睛1",
+      "font_class": "yanjing1",
+      "unicode": "e6d0",
+      "unicode_decimal": 59088
+    }
+  ]
+}

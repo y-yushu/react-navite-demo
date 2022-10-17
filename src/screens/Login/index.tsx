@@ -2,44 +2,49 @@ import * as React from 'react';
 import {
   View,
   Text,
-  Button,
+  // Button,
   TextInput,
   ImageBackground,
+  TouchableOpacity,
   StyleSheet,
-  useWindowDimensions,
+  Dimensions,
 } from 'react-native';
 import CheckBox from 'react-native-check-box';
-import {Logo} from '../../assets/icon/index';
+import {Logo, Visible, Invisible} from '../../assets/icon/index';
 // 背景图片
 const image = require('../../assets/image/w_bg.png');
 
-const Top = (props: {width: number}) => {
+const Top = () => {
+  const width = Dimensions.get('screen').width / 2;
+
   return (
     <View style={style.top}>
-      <Logo width={props.width / 2} />
+      <Logo width={width} />
     </View>
   );
 };
 
-const Center = (props: {width: number}) => {
-  const inp2 = {
-    ...style.input,
-    width: props.width * 0.8,
-  };
-  const inp1 = {
-    ...inp2,
-    letterSpacing: 1,
-  };
+const Center = () => {
+  const [show, setShow] = React.useState(true);
 
   return (
     <View style={style.center}>
-      <TextInput style={inp1} placeholder={'请输入账号或手机号'} />
-      <TextInput
-        style={inp2}
-        placeholder={'请输入密码'}
-        secureTextEntry={true}
-      />
-      <Button title={'登录'} />
+      <TextInput style={style.input} placeholder={'请输入账号或手机号'} />
+      <View>
+        <TextInput
+          style={style.input}
+          placeholder={'请输入密码'}
+          secureTextEntry={show}
+        />
+        <TouchableOpacity onPress={() => setShow(!show)} style={style.icon}>
+          {show ? (
+            <Invisible width={20} height={20} />
+          ) : (
+            <Visible width={20} height={20} />
+          )}
+        </TouchableOpacity>
+      </View>
+      {/* <Button title={'登录'} /> */}
     </View>
   );
 };
@@ -51,7 +56,6 @@ const Bottom = () => {
   return (
     <View style={style.bottom}>
       <CheckBox
-        style={style.bottomCheckBox}
         checkBoxColor={'#27BE8F'}
         onClick={() => setIsChecked(!isChecked)}
         isChecked={isChecked}
@@ -69,9 +73,6 @@ const Bottom = () => {
 };
 
 const App = (props: any) => {
-  // 屏幕宽度
-  const {width} = useWindowDimensions();
-
   const toPage = () => {
     props.navigation.navigate('Test1');
   };
@@ -79,8 +80,8 @@ const App = (props: any) => {
 
   return (
     <ImageBackground style={style.container} source={image}>
-      <Top width={width} />
-      <Center width={width} />
+      <Top />
+      <Center />
       <Bottom />
     </ImageBackground>
   );
@@ -91,29 +92,35 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
+    backgroundColor: '#fff',
   },
   top: {
-    flex: 1,
+    height: 220,
     alignItems: 'center',
     justifyContent: 'center',
   },
   center: {
-    flex: 2,
+    flex: 1,
   },
   input: {
     height: 40,
-    marginTop: 20,
-    paddingLeft: 10,
+    width: Dimensions.get('screen').width * 0.8,
+    marginBottom: 20,
+    paddingLeft: 15,
     borderRadius: 5,
-    elevation: 1.5,
+    borderColor: '#B0BDC3',
+    borderWidth: 0.5,
+    elevation: 1,
     backgroundColor: '#ffffff',
   },
-  bottom: {
-    flex: 1,
-    justifyContent: 'flex-end',
+  icon: {
+    position: 'absolute',
+    top: 10,
+    right: 10,
   },
-  bottomCheckBox: {
-    marginBottom: 20,
+  bottom: {
+    height: 30,
+    alignItems: 'center',
   },
   bottomText1: {
     paddingLeft: 4,
