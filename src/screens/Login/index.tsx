@@ -2,30 +2,35 @@ import * as React from 'react';
 import {
   View,
   Text,
-  // Button,
+  Button,
   TextInput,
   ImageBackground,
   TouchableOpacity,
+  StatusBar,
   StyleSheet,
   Dimensions,
 } from 'react-native';
 import CheckBox from 'react-native-check-box';
+import Colors from '../../enum/colors'; // 颜色
 import {Logo, Visible, Invisible} from '../../assets/icon/index';
-// 背景图片
-const image = require('../../assets/image/w_bg.png');
+import {LoginBG} from '../../assets/image/index'; // 背景图片
 
 const Top = () => {
   const width = Dimensions.get('screen').width / 2;
 
   return (
     <View style={style.top}>
+      <StatusBar hidden={true} />
       <Logo width={width} />
     </View>
   );
 };
 
-const Center = () => {
+const Center = (props: {navigation: any}) => {
+  // 密码是否可见
   const [show, setShow] = React.useState(true);
+  // 去首页
+  const toHome = () => props.navigation.replace('Home');
 
   return (
     <View style={style.center}>
@@ -44,7 +49,7 @@ const Center = () => {
           )}
         </TouchableOpacity>
       </View>
-      {/* <Button title={'登录'} /> */}
+      <Button title={'登录'} onPress={toHome} />
     </View>
   );
 };
@@ -56,7 +61,7 @@ const Bottom = () => {
   return (
     <View style={style.bottom}>
       <CheckBox
-        checkBoxColor={'#27BE8F'}
+        checkBoxColor={Colors.green}
         onClick={() => setIsChecked(!isChecked)}
         isChecked={isChecked}
         rightTextView={
@@ -73,15 +78,10 @@ const Bottom = () => {
 };
 
 const App = (props: any) => {
-  const toPage = () => {
-    props.navigation.navigate('Test1');
-  };
-  console.log(toPage);
-
   return (
-    <ImageBackground style={style.container} source={image}>
+    <ImageBackground style={style.container} source={LoginBG}>
       <Top />
-      <Center />
+      <Center {...props} />
       <Bottom />
     </ImageBackground>
   );
@@ -92,7 +92,7 @@ const style = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#fff',
+    backgroundColor: Colors.white,
   },
   top: {
     height: 220,
@@ -108,10 +108,10 @@ const style = StyleSheet.create({
     marginBottom: 20,
     paddingLeft: 15,
     borderRadius: 5,
-    borderColor: '#B0BDC3',
+    borderColor: Colors.gray,
     borderWidth: 0.5,
     elevation: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: Colors.white,
   },
   icon: {
     position: 'absolute',
@@ -119,14 +119,14 @@ const style = StyleSheet.create({
     right: 10,
   },
   bottom: {
-    height: 30,
+    height: 45,
     alignItems: 'center',
   },
   bottomText1: {
     paddingLeft: 4,
   },
   bottomText2: {
-    color: '#27BE8F',
+    color: Colors.green,
     textDecorationLine: 'underline',
   },
 });

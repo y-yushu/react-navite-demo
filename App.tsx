@@ -23,6 +23,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 // import Index from './src/components/Animated'; // 动画
 
 import Login from './src/screens/Login/index';
+import Home from './src/screens/Home/index';
 import Test1 from './src/screens/test1';
 import Test2 from './src/screens/test2';
 
@@ -35,6 +36,13 @@ const App = () => {
         <Stack.Screen
           name="Login"
           component={Login}
+          options={{
+            header: () => null,
+          }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
           options={{
             header: () => null,
           }}
